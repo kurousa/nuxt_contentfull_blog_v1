@@ -23,6 +23,7 @@
               class="mx-auto"
             >
               <v-img
+                v-if="post.fields.image"
                 :src="post.fields.image.fields.file.url"
                 :alt="post.fields.image.fields.title"
                 :aspect-ratio="16/9"
