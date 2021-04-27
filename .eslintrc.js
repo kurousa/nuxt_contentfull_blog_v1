@@ -11,7 +11,9 @@ module.exports = {
   plugins: [],
   // add your custom rules here
   rules: {
-    "no-console": "warn", // console.log()に対するエラーを警告扱いにする
-    "no-trailing-spaces": "off" // 行の末尾の空白に対するLintはしない
+    "no-console": "off", // console.log()に対するエラーを警告扱いにする
+    "no-trailing-spaces": "off", // 行の末尾の空白に対するLintはしない
+    "space-before-function-paren": "off",
+    "eol-last": "off"
   }
 };
