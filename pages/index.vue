@@ -79,10 +79,10 @@ export default {
     return { posts }
   },
   computed: {
+    ...mapGetters(['setEyeCatch']),
     linkTo: () => (obj) => {
-      return { name: 'post-slug', params: { slug: obj.fields.slug } }
-    },
-    ...mapGetters(['setEyeCatch'])
+      return { name: 'posts-slug', params: { slug: obj.fields.slug } }
+    }
   }
 }
 </script>
