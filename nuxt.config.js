@@ -53,6 +53,12 @@ export default {
     CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN
   },
 
+  router: {
+    middleware: [
+      'getContentful'
+    ]
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
