@@ -10,7 +10,8 @@
         height="400"
         class="mx-auto"
       />
-      {{ currentPost.fields.publishDate }}<br>
+      {{ currentPost.fields.publishDate }}
+      <span :is="draftChip(currentPost)" /><br>
       {{ currentPost.fields.body }}
     </template>
 
@@ -36,8 +37,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import client from '~/plugins/contentful'
+import draftChip from '~/components/posts/draftChip.vue'
 
 export default {
+  components: {
+    draftChip
+  },
   async asyncData({ env, params }) {
     let currentPost = null
     await client.getEntries({
@@ -48,7 +53,7 @@ export default {
     return { currentPost }
   },
   computed: {
-    ...mapGetters(['setEyeCatch'])
+    ...mapGetters(['setEyeCatch', 'draftChip'])
   }
 }
 </script>
