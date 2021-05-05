@@ -1,7 +1,8 @@
 <template>
   <v-container fluid>
     <template v-if="currentPost">
-      <v-breadcrumbs :items="breadCrumbs" divider=">" />
+      <breadcrumbs :add-items="addBreads" />
+
       {{ currentPost.fields.title }}
       <v-img
         :src="setEyeCatch(currentPost).url"
@@ -47,18 +48,30 @@ export default {
     const currentPost = payload || await store.state.posts.find(post => post.fields.slug === params.slug)
 
     if (currentPost) {
-      return { currentPost }
+      return { 
+        currentPost,
+        category: currentPost.fields.category
+      }
     } else {
       return error({ statusCode: 400 })
     }
   },
   computed: {
-    ...mapGetters(['setEyeCatch', 'draftChip']),
+    ...mapGetters(['setEyeCatch', 'draftChip', 'linkTo']),
     breadCrumbs() {
       const category = this.currentPost.fields.category
       return [
         { text: 'Home', to: '/' },
         { text: category.fields.name, to: '#' }
+      ]
+    },
+    addBreads() {
+      return [
+        {
+          icon: 'mdi-folder-outline',
+          text: this.category.fields.name,
+          to: this.linkTo('categories', this.category)
+        }
       ]
     }
   }

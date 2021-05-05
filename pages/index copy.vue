@@ -34,20 +34,21 @@
                     small
                     dark
                     :color="categoryColor(post.fields.category)"
-                    :to="linkTo('categories', post.fields.category)"
+                    to="#"
                     class="font-weight-bold"
                   >
                     {{ post.fields.category.fields.name }}
                   </v-chip>
-                </v-card-text>              
+                </v-card-text>
+                <v-card-title>
+                  <nuxt-link
+                    :to="linkTo('posts', post)"
+                  >
+                    {{ post.fields.title }}
+                  </nuxt-link>
+                </v-card-title>
               </v-img>
-              <v-card-title>
-                <nuxt-link
-                  :to="linkTo('posts', post)"
-                >
-                  {{ post.fields.title }}
-                </nuxt-link>
-              </v-card-title>
+
               <v-card-text>
                 {{ post.fields.publishDate }}
                 <span :is="draftChip(post)" />
@@ -91,12 +92,12 @@ export default {
   computed: {
     ...mapState(['posts']),
     ...mapGetters(['setEyeCatch', 'draftChip', 'linkTo']),
-    categoryColor() {
+    categoryColor () {
       return (category) => {
         switch (category.fields.name) {
-          case 'RubyOnRails': return '#C73A31'
-          case 'Nuxt.js': return '#236244'
-          case 'コラム': return 'primary'
+          case 'RubyOnRails' : return '#C73A31'
+          case 'Nuxt.js' : return '#236244'
+          case 'column' : return 'primary'
           default: return 'grey darken-3'
         }
       }
