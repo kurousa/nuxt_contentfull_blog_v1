@@ -1,6 +1,7 @@
 <template>
   <v-container fluid>
     <template v-if="currentPost">
+      <v-breadcrumbs :items="breadCrumbs" divider=">" />
       {{ currentPost.fields.title }}
       <v-img
         :src="setEyeCatch(currentPost).url"
@@ -52,7 +53,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['setEyeCatch', 'draftChip'])
+    ...mapGetters(['setEyeCatch', 'draftChip']),
+    breadCrumbs() {
+      const category = this.currentPost.fields.category
+      return [
+        { text: 'Home', to: '/' },
+        { text: category.fields.name, to: '#' }
+      ]
+    }
   }
 }
 </script>
