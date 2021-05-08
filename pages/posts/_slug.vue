@@ -20,6 +20,10 @@
     <template v-else>
       お探しの記事は見つかりませんでした。
     </template>
+    <client-only>
+      <share-btns :page-title="currentPost.fields.title"/>
+      <follow-btns />
+    </client-only>
 
     <div>
       <v-btn
@@ -39,10 +43,13 @@
 <script>
 import { mapGetters } from 'vuex'
 import draftChip from '~/components/posts/draftChip.vue'
-
+import shareBtns from '~/components/ui/shareBtns'
+import followBtns from '~/components/ui/followBtns'
 export default {
   components: {
-    draftChip
+    draftChip,
+    shareBtns,
+    followBtns
   },
   async asyncData({ payload, store, params, error }) {
     const currentPost = payload || await store.state.posts.find(post => post.fields.slug === params.slug)
