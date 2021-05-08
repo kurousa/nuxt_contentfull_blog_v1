@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import myHeader from '~/components/shared/myHeader'
+import myHeader from '../components/shared/myHeader'
 
 export default {
   components: {
