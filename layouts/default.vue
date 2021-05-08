@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import myHeader from '../components/shared/myHeader'
+import MyHeader from '../components/shared/myHeader.vue'
 
 export default {
   components: {
-    myHeader
+    MyHeader
   }
 }
 </script>
